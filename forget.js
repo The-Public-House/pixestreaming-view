@@ -128,12 +128,14 @@ const main = () => {
   const inputConfirmNewPassword = createInput("inputConfirmNewPassword", "input-new-password", "Confirme sua nova senha", "password");
 
   const buttonCreateNewPassword = createButton("submit-button", submitNewPassword, "Confirme sua nova senha");
+
+  const cancelButton = createButton("cancel-button", () => window.location.replace("index.html"), "Cancelar");
   
   root.innerHTML = "";
 
-  if (step === "verifyEmail") appendChilds(root, [inputEmail, buttonVerifyEmail]);
-  else if (step === "verifyCode") appendChilds(root, [inputCode, buttonVerifyCode]);
-  else if (step === "newPassword") appendChilds(root, [inputNewPassword, inputConfirmNewPassword, buttonCreateNewPassword]);
+  if (step === "verifyEmail") appendChilds(root, [inputEmail, buttonVerifyEmail, cancelButton]);
+  else if (step === "verifyCode") appendChilds(root, [inputCode, buttonVerifyCode, cancelButton]);
+  else if (step === "newPassword") appendChilds(root, [inputNewPassword, inputConfirmNewPassword, buttonCreateNewPassword, cancelButton]);
 };
 
 document.addEventListener("DOMContentLoaded", () => main());
