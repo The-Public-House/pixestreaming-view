@@ -3,9 +3,11 @@
   <head>
     <title>Brasil Agriland</title>
     <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./register.css">
+    
+    <meta charset="UTF-8">
   </head>
   <body>
-    
     <script type="module" src="./register.js"></script>
     <h1>Registro</h1>
     
@@ -34,26 +36,82 @@
       <label for="corpEmail">E-mail Coorporativo</label>
       <input id="corpEmail" />
       
-      <label for="partOf">Faz parte do Agro?</label>
-      <input type="checkbox" id="partOf" />
+      <div>
+        <label for="partOf">Faz parte do Agro?</label>
+        <input type="checkbox" id="partOf" />
+      </div>
 
       <label for="role">Cargo</label>
       <input id="role" />
 
-      <label for="areaOfInterest">Area de interesse</label>
-      <input id="areaOfInterest" />
-
       <label for="instituition">Instituição</label>
       <input id="instituition" />
+      
+      <h5>Area de interesse</h5>
 
-      <label for="acceptTerms">Aceita os termos</label>
-      <input type="checkbox" id="acceptTerms" />
-    
+      <div class="area-of-interest">
+        <div class="checkbox">
+          <label for="cotton">Algodão</label>
+          <input id="cotton" type="checkbox" />
+        </div>
+
+        <div class="checkbox">
+          <label for="sugarCane">Cana de açucar</label>
+          <input id="sugarCane" type="checkbox" />
+        </div>
+
+        <div class="checkbox">
+          <label for="soy">Soja</label>
+          <input id="soy" type="checkbox" />
+        </div>
+
+        <div class="checkbox">
+          <label for="birds">Aves</label>
+          <input id="birds" type="checkbox" />
+        </div>
+
+        <div class="checkbox">
+          <label for="cocoa">Cacau</label>
+          <input id="cocoa" type="checkbox" />
+        </div>
+
+        <div class="checkbox">
+          <label for="swine">Suíno</label>
+          <input id="swine" type="checkbox" />
+        </div>
+
+        <div class="checkbox">
+          <label for="bovine">Bovino</label>
+          <input id="bovine" type="checkbox" />
+        </div>
+
+        <div class="checkbox">
+          <label for="milk">Leite e Derivados</label>
+          <input id="milk" type="checkbox" />
+        </div>
+
+        <div class="checkbox">
+          <label for="coffee">Café</label>
+          <input id="coffee" type="checkbox" />
+        </div>
+
+        <div class="checkbox">
+          <label for="fish">Pescado</label>
+          <input id="fish" type="checkbox" />
+        </div>
+      </div>
+
+      <div class="accept-terms">
+        <label for="acceptTerms">Aceita os termos</label>
+        <input type="checkbox" id="acceptTerms" />
+      </div>
+
       <button
         id="register-button"
       >
         Registrar
       </button>
+
       <button
         id="cancel-button"
       >
@@ -62,5 +120,4 @@
     </div>
   </body>
 </html>
-
 

@@ -4,7 +4,7 @@ const main = () => {
   document.getElementById("cancel-button").addEventListener("click", () => window.location.replace("index.html"));
 
   document.getElementById("register-button").addEventListener("click", async () => {
-    const data = {
+    let data = {
       name: document.getElementById("name").value,
       lastName: document.getElementById("lastName").value,
       email: document.getElementById("email").value,
@@ -14,12 +14,15 @@ const main = () => {
       corpEmail: document.getElementById("corpEmail").value,
       partOf: document.getElementById("partOf").checked,
       role: document.getElementById("role").value,
-      areaOfInterest: document.getElementById("areaOfInterest").value,
       instituition: document.getElementById("instituition").value,
       acceptTerms: document.getElementById("acceptTerms").checked,  
-    }
+    };
 
-    console.log(data);
+    const areaOfInterest = `${document.getElementById("cotton").checked ? `Algodão,` : ""}${document.getElementById("sugarCane").checked ? `Cana de açucar,` : ""}${document.getElementById("soy").checked ? `Soja,` : ""}${document.getElementById("birds").checked ? `Aves,` : ""}${document.getElementById("cocoa").checked ? `Cacau,` : ""}${document.getElementById("swine").checked ? `Suíno,` : ""}${document.getElementById("bovine").checked ? `Bovino,` : ""}${document.getElementById("milk").checked ? `Leite e Derivados,` : ""}${document.getElementById("coffee").checked ? `Café,` : ""}${document.getElementById("fish").checked ? `Pescado,` : ""}`
+  
+    const formatAreaOfInterest = areaOfInterest.slice(0, -1);
+
+    data = { ...data, areaOfInterest: formatAreaOfInterest };
 
     try {
       var request = new XMLHttpRequest(); 
@@ -44,7 +47,6 @@ const main = () => {
     } catch (err) {
       console.log("Ocorreu um erro ao registrar: ", err);
     }
-      
   });
 };
  
