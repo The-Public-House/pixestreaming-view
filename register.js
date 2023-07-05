@@ -4,6 +4,9 @@ const main = () => {
   document.getElementById("cancel-button").addEventListener("click", () => window.location.replace("index.html"));
 
   document.getElementById("register-button").addEventListener("click", async () => {
+    const alert = document.getElementById("alert");
+    alert.innerHTML = "";
+
     let data = {
       name: document.getElementById("name").value,
       lastName: document.getElementById("lastName").value,
@@ -33,14 +36,14 @@ const main = () => {
         if (request.status >= 200 && request.status < 400) {
           var responseData = JSON.parse(request.responseText);
           
-          console.log(responseData);       
+          alert.innerHTML = "<p>Usuário criado com sucesso!</p>";
         } else {
           console.error('Erro na requisição. Status:', request.status);
         }
       };
   
       request.onerror = function() {
-        console.error('Erro na requisição.');
+        alert.innerHTML = "<p>Não foi possível cadastrar o usuário.</p>";
       };
   
       request.send(JSON.stringify(data));
