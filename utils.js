@@ -37,3 +37,27 @@ export const createTitle = (text) => {
 };
 
 export const baseUrl = "https://agriland11971.c42.integrator.host/services"
+
+export const postHttp = async (endPoint, onSuccess, onFailed, onError, data) => {
+  var request = new XMLHttpRequest(); 
+  request.open('POST', `${baseUrl}${endPoint}`, true);
+  request.setRequestHeader('Content-Type', 'application/json');
+  
+  request.onload = function() {
+    if (request.status >= 200 && request.status < 400) {
+      var data = JSON.parse(request.responseText);
+      
+      onSuccess(data);
+    } else {
+      onFailed();
+    }
+  };
+  
+  request.onerror = function() {
+    onError();
+  };
+  
+  request.send(JSON.stringify(data));
+};
+
+export const constructData = (values) => values.map(value => ({ [value]: document.getElementById(value).value }));

@@ -26,7 +26,7 @@ const submitNewPassword = async () => {
         var responseData = JSON.parse(request.responseText);
             
         if (responseData.success) {
-          window.location.replace("index.html");
+          window.location.replace("player.html");
         }
       } else {
         console.error('Erro na requisição. Status:', request.status);
@@ -129,7 +129,7 @@ const main = () => {
 
   const buttonCreateNewPassword = createButton("submit-button", submitNewPassword, "Confirme sua nova senha");
 
-  const cancelButton = createButton("cancel-button", () => window.location.replace("index.html"), "Cancelar");
+  const cancelButton = createButton("cancel-button", () => window.location.replace("player.html"), "Cancelar");
   
   root.innerHTML = "";
 

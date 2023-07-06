@@ -1,10 +1,11 @@
-import { baseUrl } from "./utils.js";
+import { constructData, postHttp } from "./utils.js";
 
 const main = () => {
-  document.getElementById("cancel-button").addEventListener("click", () => window.location.replace("index.html"));
+  document.getElementById("cancel-button").addEventListener("click", () => window.location.replace("player.html"));
 
   document.getElementById("register-button").addEventListener("click", async () => {
     const alert = document.getElementById("alert");
+    
     alert.innerHTML = "";
 
     let data = {
@@ -15,38 +16,64 @@ const main = () => {
       phone: document.getElementById("phone").value,
       cpf: document.getElementById("cpf").value,
       corpEmail: document.getElementById("corpEmail").value,
-      partOf: document.getElementById("partOf").checked,
       role: document.getElementById("role").value,
       instituition: document.getElementById("instituition").value,
+    };
+
+    /*
+      let data = {
+        ...constructData([
+          "name",
+          "lastName",
+          "email",
+          "password",
+          "phone",
+          "cpf",
+          "corpEmail",
+          "role",
+          "instituition",
+        ])
+      };
+    */
+
+    data = {
+      ...data,
+      partOf: document.getElementById("partOf").checked,
       acceptTerms: document.getElementById("acceptTerms").checked,  
     };
 
-    const areaOfInterest = `${document.getElementById("cotton").checked ? `Algodão,` : ""}${document.getElementById("sugarCane").checked ? `Cana de açucar,` : ""}${document.getElementById("soy").checked ? `Soja,` : ""}${document.getElementById("birds").checked ? `Aves,` : ""}${document.getElementById("cocoa").checked ? `Cacau,` : ""}${document.getElementById("swine").checked ? `Suíno,` : ""}${document.getElementById("bovine").checked ? `Bovino,` : ""}${document.getElementById("milk").checked ? `Leite e Derivados,` : ""}${document.getElementById("coffee").checked ? `Café,` : ""}${document.getElementById("fish").checked ? `Pescado,` : ""}`
+    const translateCheckbox = (field, text) => document.getElementById(field).checked ? `${text},` : "";
+
+    const areaOfInterest = `
+      ${translateCheckbox("cotton", 'Algodão')}
+      ${translateCheckbox("sugarCane", 'Cana de Açucar')}
+      ${translateCheckbox("soy", 'Soja')}
+      ${translateCheckbox("birds", 'Aves')}
+      ${translateCheckbox("cocoa", 'Cacau')}
+      ${translateCheckbox("swine", 'Suíno')}
+      ${translateCheckbox("bovine", 'Bovino')}
+      ${translateCheckbox("milk", 'Leite e derivados')}
+      ${translateCheckbox("coffee", 'Café')}
+      ${translateCheckbox("fish", 'Pescado')}`.replace(' ', '');
   
     const formatAreaOfInterest = areaOfInterest.slice(0, -1);
 
     data = { ...data, areaOfInterest: formatAreaOfInterest };
 
+    console.log({ data });
+
     try {
-      var request = new XMLHttpRequest(); 
-      request.open('POST', `${baseUrl}/unauth/signup`, true);
-      request.setRequestHeader('Content-Type', 'application/json');
-  
-      request.onload = function() {
-        if (request.status >= 200 && request.status < 400) {
-          var responseData = JSON.parse(request.responseText);
-          
+      postHttp(
+        '/unauth/signup',
+        (data) => {
+          console.log(data);
           alert.innerHTML = "<p>Usuário criado com sucesso!</p>";
-        } else {
-          console.error('Erro na requisição. Status:', request.status);
-        }
-      };
-  
-      request.onerror = function() {
-        alert.innerHTML = "<p>Não foi possível cadastrar o usuário.</p>";
-      };
-  
-      request.send(JSON.stringify(data));
+        },
+        () => console.error('Erro na requisição. Status:', request.status),
+        () => alert.innerHTML = "<  p>Não foi possível cadastrar o usuário.</p>",
+        data
+      );
+
     } catch (err) {
       console.log("Ocorreu um erro ao registrar: ", err);
     }
