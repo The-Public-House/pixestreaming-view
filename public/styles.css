@@ -20,11 +20,13 @@ body {
   align-items: center;
 }
 
-.login-card {
+.card-login {
   display: flex;
   flex-direction: column;
 
   justify-content: center;
+
+  padding-right: 30%;
 }
 
 #playerUI {
@@ -43,6 +45,7 @@ body {
 }
 
 .email-input input {
+  border: 2px solid #dcdc01;
   padding: 8px;
 }
 
@@ -57,12 +60,15 @@ body {
 }
 
 .password-input input {
+  border: 2px solid #dcdc01;
   padding: 8px;
 }
 
 .button-signin {
   padding: 8px 40px 8px 40px;
   margin-bottom: 8px;
+  background: #dcdc01;
+  border: 2px solid #dcdc01;
 }
 
 .button-signin:hover {

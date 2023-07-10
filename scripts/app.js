@@ -43,6 +43,7 @@ const render = () => {
 
   const createTitle = (text) => {
     const title = document.createElement("h1");
+    title.style.color = "#dcdc01";
     title.appendChild(document.createTextNode(text));
     return title;
   };
@@ -51,14 +52,11 @@ const render = () => {
 
   const root = document.getElementById('root');
 
-  root.style.height = '100vh';
-  root.style.width = '100vw';
-
   // const playerUI = document.getElementById('playerUI');
 
   const title = createTitle("Login");
 
-  const emailInput = createInput("email", "email-input", "E-mail", "email");
+  const emailInput = createInput("email", "email-input", "Usuário", "email");
 
   const passwordInput = createInput("password", "password-input", "Senha", "password");
 
@@ -101,7 +99,7 @@ const render = () => {
       request.send(JSON.stringify(data));
     } catch(err) {
       console.log(err);
-    } 
+    }
   };
 
   // teste = false;
@@ -118,11 +116,11 @@ const render = () => {
 
   const card = document.createElement("div");
   
-  card.class = "card-login";
+  card.className = "card-login";
 
   const footerCard = document.createElement("div");
 
-  footerCard.class = "footer-login";
+  footerCard.className = "footer-login";
 
   appendChilds(footerCard, [buttonRegister, buttonForget]);
 
