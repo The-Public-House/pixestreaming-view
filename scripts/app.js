@@ -81,11 +81,9 @@ const render = () => {
               value: data.data
             };
               
-            // startAfkWarningTimer();
             // emitUIInteraction(emitData);
             // root.style.display = "none";
             // playerUI.style.visibility = "visible";
-
           } else if (!data.hasVerified) window.location.replace("verify.html");
         } else {
           console.error('Erro na requisição. Status:', request.status);
@@ -105,6 +103,8 @@ const render = () => {
   // teste = false;
 
   const dividerTop = createDivider('divider divider-top');
+
+  const dividerFooter = createDivider('divider-footer');
   
   const dividerBottom = createDivider('divider divider-bottom');
    
@@ -122,7 +122,7 @@ const render = () => {
 
   footerCard.className = "footer-login";
 
-  appendChilds(footerCard, [buttonRegister, buttonForget]);
+  appendChilds(footerCard, [buttonRegister, dividerFooter, buttonForget]);
 
   appendChilds(card, [
     title,
