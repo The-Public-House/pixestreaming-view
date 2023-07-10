@@ -1,1 +1,94 @@
+html {
+  height: 100vh;
+  width: 100vw;
+}
 
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0px !important;
+  background-image: url("./background.PNG");
+  background-size: cover;
+}
+
+.root {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.login-card {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+#playerUI {
+  width: 100%;
+  height: 100%;
+}
+
+.email-input {
+  width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  margin-bottom: 8px;
+}
+
+.email-input input {
+  padding: 8px;
+}
+
+.password-input {
+  width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  margin-bottom: 8px;
+}
+
+.password-input input {
+  padding: 8px;
+}
+
+.button-signin {
+  padding: 8px 40px 8px 40px;
+  margin-bottom: 8px;
+}
+
+.button-signin:hover {
+  cursor: pointer;
+}
+
+.button-register {
+  background: transparent;
+  border-color: transparent;
+}
+
+.button-register:hover {
+  cursor: pointer;
+}
+
+.button-forget {
+  background: transparent;
+  border-color: transparent;
+}
+
+.button-forget:hover {
+  cursor: pointer;
+}
+
+.divider {
+  width: 100%;
+  background: #000;
+  height: 2px;
+}

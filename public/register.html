@@ -9,117 +9,121 @@
   </head>
   <body>
     <script type="module" src="../scripts/register.js"></script>
-    <h1>Registro</h1>
-    
-    <div class="card-register">
-      <label for="name">Nome</label>
-      <input id="name" />
-    
-      <label for="lastName">Sobrenome</label>
-      <input id="lastName" />
+
+    <div class="main-content">
+
+      
+      <div class="card-register">
+        <h1>Registro</h1>
         
-      <label for="email">E-mail</label>
-      <input id="email" />
-    
-      <label for="password">Senha</label>
-      <input id="password" />
-    
-      <label for="confirmPassword">Confirme sua senha</label>
-      <input id="confirmPassword" />
-    
-      <label for="phone">Telefone</label>
-      <input id="phone" />
-    
-      <label for="cpf">CPF</label>
-      <input id="cpf" />
-
-      <label for="corpEmail">E-mail Coorporativo</label>
-      <input id="corpEmail" />
+        <label for="name">Nome completo</label>
+        <input id="name" />
+          
+        <label for="email">E-mail</label>
+        <input id="email" />
       
-      <div>
-        <label for="partOf">Faz parte do Agro?</label>
-        <input type="checkbox" id="partOf" />
-      </div>
-
-      <label for="role">Cargo</label>
-      <input id="role" />
-
-      <label for="instituition">Instituição</label>
-      <input id="instituition" />
+        <label for="password">Senha</label>
+        <input id="password" />
       
-      <h5>Area de interesse</h5>
-
-      <div class="area-of-interest">
-        <div class="checkbox">
-          <label for="cotton">Algodão</label>
-          <input id="cotton" type="checkbox" />
+        <label for="confirmPassword">Confirme sua senha</label>
+        <input id="confirmPassword" />
+      
+        <label for="phone">Telefone</label>
+        <input id="phone" />
+      
+        <label for="cpf">CPF</label>
+        <input id="cpf" />
+  
+        <label for="corpEmail">E-mail Coorporativo</label>
+        <input id="corpEmail" />
+        
+        <div>
+          <label for="partOf">Faz parte do Agro?</label>
+          <input type="checkbox" id="partOf" />
         </div>
-
-        <div class="checkbox">
-          <label for="sugarCane">Cana de açucar</label>
-          <input id="sugarCane" type="checkbox" />
+  
+        <label for="role">Cargo</label>
+        <input id="role" />
+  
+        <label for="instituition">Instituição</label>
+        <input id="instituition" />
+        
+        <h4 style="font-weight: 400;">Area de interesse</h4>
+  
+        <div class="area-of-interest">
+          <div class="checkbox">
+            <input id="cotton" type="checkbox" />
+            <label for="cotton">Algodão</label>
+          </div>
+  
+          <div class="checkbox">
+            <input id="sugarCane" type="checkbox" />
+            <label for="sugarCane">Cana de açucar</label>
+          </div>
+  
+          <div class="checkbox">
+            <input id="soy" type="checkbox" />
+            <label for="soy">Soja</label>
+          </div>
+  
+          <div class="checkbox">
+            <input id="birds" type="checkbox" />
+            <label for="birds">Aves</label>
+          </div>
+  
+          <div class="checkbox">
+            <input id="cocoa" type="checkbox" />
+            <label for="cocoa">Cacau</label>
+          </div>
+  
+          <div class="checkbox">
+            <input id="swine" type="checkbox" />
+            <label for="swine">Suíno</label>
+          </div>
+  
+          <div class="checkbox">
+            <input id="bovine" type="checkbox" />
+            <label for="bovine">Bovino</label>
+          </div>
+  
+          <div class="checkbox">
+            <input id="milk" type="checkbox" />
+            <label for="milk">Leite e Derivados</label>
+          </div>
+  
+          <div class="checkbox">
+            <input id="coffee" type="checkbox" />
+            <label for="coffee">Café</label>
+          </div>
+  
+          <div class="checkbox">
+            <input id="fish" type="checkbox" />
+            <label for="fish">Pescado</label>
+          </div>
         </div>
-
-        <div class="checkbox">
-          <label for="soy">Soja</label>
-          <input id="soy" type="checkbox" />
+  
+        <div class="accept-terms">
+          <input type="checkbox" id="acceptTerms" />
+          <label for="acceptTerms">Aceita os termos</label>
         </div>
+  
+        <button
+          id="register-button"
+        >
+          Registrar
+        </button>
+  
+        <button
+          id="cancel-button"
+        >
+          Cancelar
+        </button>
+  
+        <div id="alert"></div>
+    </div>
 
-        <div class="checkbox">
-          <label for="birds">Aves</label>
-          <input id="birds" type="checkbox" />
-        </div>
-
-        <div class="checkbox">
-          <label for="cocoa">Cacau</label>
-          <input id="cocoa" type="checkbox" />
-        </div>
-
-        <div class="checkbox">
-          <label for="swine">Suíno</label>
-          <input id="swine" type="checkbox" />
-        </div>
-
-        <div class="checkbox">
-          <label for="bovine">Bovino</label>
-          <input id="bovine" type="checkbox" />
-        </div>
-
-        <div class="checkbox">
-          <label for="milk">Leite e Derivados</label>
-          <input id="milk" type="checkbox" />
-        </div>
-
-        <div class="checkbox">
-          <label for="coffee">Café</label>
-          <input id="coffee" type="checkbox" />
-        </div>
-
-        <div class="checkbox">
-          <label for="fish">Pescado</label>
-          <input id="fish" type="checkbox" />
-        </div>
-      </div>
-
-      <div class="accept-terms">
-        <label for="acceptTerms">Aceita os termos</label>
-        <input type="checkbox" id="acceptTerms" />
-      </div>
-
-      <button
-        id="register-button"
-      >
-        Registrar
-      </button>
-
-      <button
-        id="cancel-button"
-      >
-        Cancelar
-      </button>
-
-      <div id="alert"></div>
     </div>
   </body>
 </html>
 
+  

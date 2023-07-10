@@ -60,4 +60,28 @@ export const postHttp = async (endPoint, onSuccess, onFailed, onError, data) => 
   request.send(JSON.stringify(data));
 };
 
-export const constructData = (values) => values.map(value => ({ [value]: document.getElementById(value).value }));
+export const getHttp = async (endPoint, query, onSuccess, onFailed, onError) => {
+  var request = new XMLHttpRequest(); 
+  request.open('GET', `${baseUrl}${endPoint}${query ? `?${query}` : ''}`, true);
+  request.setRequestHeader('Content-Type', 'application/json');
+  
+  request.onload = function() {
+    if (request.status >= 200 && request.status < 400) {
+      var data = JSON.parse(request.responseText);
+      
+      onSuccess(data);
+    } else {
+      onFailed();
+    }
+  };
+  
+  request.onerror = function() {
+    onError();
+  };
+  
+  request.send(JSON.stringify());
+}
+
+export const constructData = (values) => values.map(
+    value => ({ [value]: document.getElementById(value).value })
+  );

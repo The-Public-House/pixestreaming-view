@@ -21,20 +21,19 @@ const main = () => {
     };
 
     /*
-      let data = {
-        ...constructData([
-          "name",
-          "lastName",
-          "email",
-          "password",
-          "phone",
-          "cpf",
-          "corpEmail",
-          "role",
-          "instituition",
-        ])
-      };
     */
+   
+    console.log(constructData([
+      "name",
+      "lastName",
+      "email",
+      "password",
+      "phone",
+      "cpf",
+      "corpEmail",
+      "role",
+      "instituition",
+    ]))
 
     data = {
       ...data,
@@ -60,19 +59,17 @@ const main = () => {
 
     data = { ...data, areaOfInterest: formatAreaOfInterest };
 
-    console.log({ data });
-
     try {
-      postHttp(
-        '/unauth/signup',
-        (data) => {
-          console.log(data);
-          alert.innerHTML = "<p>Usuário criado com sucesso!</p>";
-        },
-        () => console.error('Erro na requisição. Status:', request.status),
-        () => alert.innerHTML = "<  p>Não foi possível cadastrar o usuário.</p>",
-        data
-      );
+      // postHttp(
+      //   '/unauth/signup',
+      //   (data) => {
+      //     console.log(data);
+      //     alert.innerHTML = "<p>Usuário criado com sucesso!</p>";
+      //   },
+      //   () => console.error('Erro na requisição. Status:', request.status),
+      //   () => alert.innerHTML = "<  p>Não foi possível cadastrar o usuário.</p>",
+      //   data
+      // );
 
     } catch (err) {
       console.log("Ocorreu um erro ao registrar: ", err);

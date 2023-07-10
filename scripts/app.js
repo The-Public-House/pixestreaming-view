@@ -1,4 +1,12 @@
 const render = () => {
+  const createDivider = (className) => {
+    const div = document.createElement("div");
+
+    div.className = className;
+
+    return div;
+  };
+
   const baseUrl = "https://agriland11971.c42.integrator.host/services";
 
   const createInput = (id, className, labelText, type) => {
@@ -7,12 +15,14 @@ const render = () => {
     
     input.id = id;
     input.type = type;
-     
+    
     label.for = id;
     
     label.appendChild(document.createTextNode(labelText));
   
     const div = document.createElement("div");
+
+    div.className = className;
       
     div.appendChild(label);
     div.appendChild(input);
@@ -24,7 +34,7 @@ const render = () => {
     const button = document.createElement("button");
     button.appendChild(document.createTextNode(buttonText));
   
-    button.class = className;
+    button.className = className;
   
     button.onclick = onClick;
   
@@ -40,6 +50,10 @@ const render = () => {
   const appendChilds = (father, childs) => childs.forEach(value => father.appendChild(value));
 
   const root = document.getElementById('root');
+
+  root.style.height = '100vh';
+  root.style.width = '100vw';
+
   // const playerUI = document.getElementById('playerUI');
 
   const title = createTitle("Login");
@@ -47,7 +61,7 @@ const render = () => {
   const emailInput = createInput("email", "email-input", "E-mail", "email");
 
   const passwordInput = createInput("password", "password-input", "Senha", "password");
- 
+
   const onSubmit = async () => {
     try {
       const email = document.getElementById("email").value;
@@ -76,7 +90,7 @@ const render = () => {
 
           } else if (!data.hasVerified) window.location.replace("verify.html");
         } else {
-        console.error('Erro na requisição. Status:', request.status);
+          console.error('Erro na requisição. Status:', request.status);
         }
       };
   
@@ -91,8 +105,12 @@ const render = () => {
   };
 
   // teste = false;
+
+  const dividerTop = createDivider('divider divider-top');
+  
+  const dividerBottom = createDivider('divider divider-bottom');
    
-  const buttonSubmit = createButton("button-signin", onSubmit, "Entrar");
+  const buttonSubmit = createButton("button-signin", onSubmit, "ENTRAR");
 
   const buttonRegister = createButton("button-register", () => window.location.replace("register.html"), "Cadastre-se");
 
@@ -110,9 +128,11 @@ const render = () => {
 
   appendChilds(card, [
     title,
+    dividerTop,
     emailInput,
     passwordInput,
     buttonSubmit,
+    dividerBottom,    
     footerCard, 
   ]);
 
