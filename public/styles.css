@@ -18,6 +18,8 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  font-family: sans-serif;  
 }
 
 .card-login {
@@ -83,6 +85,7 @@ body {
 
 .button-signin:hover {
   cursor: pointer;
+  background: #dcdc0159;
 }
 
 .button-register {
@@ -92,6 +95,7 @@ body {
 
 .button-register:hover {
   cursor: pointer;
+  color: #dcdc01;
 }
 
 .button-forget {
@@ -101,6 +105,7 @@ body {
 
 .button-forget:hover {
   cursor: pointer;
+  color: #dcdc01;
 }
 
 .divider {
