@@ -1,3 +1,213 @@
+const emitUIInteraction = value => console.log(value);
+
+const serverLogin = () => {
+  const root = document.getElementById('root');
+  const playerUI = document.getElementById('playerUI');
+
+  root.style.display = "none";
+  playerUI.style.visibility = "visible";
+}
+
+const renderChat = () => {
+  const playerUI = document.getElementById('playerUI');
+  const chatBttn = document.getElementById('chat-bttn');
+
+  const displayChat = document.createElement('div');
+  displayChat.id = 'display-chat';
+  displayChat.className = 'display-chat';
+
+  const inputChat = document.createElement('input');
+  inputChat.id = 'input-chat';
+  inputChat.className = 'input-chat';
+
+  const chatContainer = document.createElement('div');
+  chatContainer.id = 'container-chat';
+  chatContainer.className = 'container-chat';
+
+  chatContainer.appendChild(displayChat);
+  chatContainer.appendChild(inputChat);
+
+  inputChat.addEventListener('keydown', event => {
+    if (event.keyCode === 13) {
+      const value = inputChat.value;
+
+      const message = document.createElement('p');
+      message.appendChild(document.createTextNode(value));
+
+      displayChat.appendChild(message);
+
+      inputChat.value = '';
+    }
+  });
+
+  chatBttn.style.visibility = 'hidden';
+  playerUI.appendChild(chatContainer);
+};
+
+const renderHud = () => {
+  const playerUI = document.getElementById('playerUI');
+
+  const baseUrl = "http://localhost:9098/auth/schedule";
+
+  const getRequestBase = async (endPoint, onSuccess) => {
+    try {
+      var request = new XMLHttpRequest(); 
+      request.open('GET', `${baseUrl}/${endPoint}`, true);
+      request.setRequestHeader('Content-Type', 'application/json');
+  
+      request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+          var data = JSON.parse(request.responseText);
+
+          onSuccess(data);
+        }
+      };
+  
+      request.onerror = function() {
+        console.log("aqui2");
+        submitContainer.removeChild(animationLoading);
+        submitContainer.appendChild(bttnSubmit);
+
+        console.error('Erro na requisição.');
+      };
+  
+      request.send();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const scheduleHud = list => {
+    const schedule = document.createElement('div');
+
+    for (let event of list) schedule.appendChild(document.createTextNode(`${event.eventName} - ${event.placeName}`));
+
+    return schedule;
+  }
+
+  const createButton = (id, className, onClick, content) => {
+    const button = document.createElement('button');
+
+    button.onclick = onClick;
+    button.id = id;
+    button.className = className;
+    button.appendChild(document.createTextNode(content));
+
+    return button;
+  };
+
+  const scheduleOnClick = () => {
+    getRequestBase("?futures=true&dateType=obj", data => {
+      const elementList = scheduleHud(data.data);
+
+      playerUI.appendChild(elementList);
+    })
+  }
+
+  // openMap
+  // closeMap
+  // name: sendText value: { type: 'private' || 'open', message: string }
+  // receiveText
+  // Marco Antônio — 07/20/2023 9:45 AM
+  // name: closeRPM
+  // Descrição: fecha a interface do ReadyPlayerMe
+  // ---
+  // name: importAvatarURL {URL: string}
+  // Descrição: quando é importado o Avatar do ReadyPlayerMe
+  // ---
+  // name: quitAgriland
+  // Descrição: quando o jogador confirma que quer fechar a aplicação
+
+  const emit = name => emitUIInteraction({ name });
+
+  const scheduleBttn = createButton(
+    'schedule-bttn',
+    'schedule-bttn',
+    scheduleOnClick,
+    'Abrir agenda'
+  );
+
+  const helpBttn = createButton(
+    'help-bttn',
+    'help-bttn',
+    () => {
+      emit('help');
+    },
+    'Help'
+  );
+
+  const avatarBttn = createButton(
+    'avatar-bttn',
+    'avatar-bttn',
+    () => console.log('avatar'),
+    'Avatar'
+  );
+
+  const mapBttn = createButton(
+    'map-bttn',
+    'map-bttn',
+    () => {
+      emit('openMap');
+    },
+    'Mapa'
+  );
+
+  const controlsBttn = createButton(
+    'controls-bttn',
+    'controls-bttn',
+    () => console.log('controls'),
+    'Controls'
+  );
+
+  const soundBttn = createButton(
+    'sound-bttn',
+    'sound-bttn',
+    () => console.log('sound'),
+    'Sound'
+  );
+
+  const logoutBttn = createButton(
+    'logout-bttn',
+    'logout-bttn',
+    () => {
+      emit('quitAgriland');
+    },
+    'Logout'
+  );
+
+  const chatBttn = createButton(
+    'chat-bttn',
+    'chat-bttn',
+    () => {
+      renderChat();
+    },
+    'chat'
+  );
+
+  const sideLeftBar = document.createElement('div');
+  sideLeftBar.className ='side-left-bar';
+
+  const topSideBar = document.createElement('div');
+  topSideBar.className = 'top-side-bar';
+
+  const topSideBarElements = [
+    avatarBttn,
+    mapBttn,
+    scheduleBttn,
+    controlsBttn,
+    soundBttn,
+    logoutBttn,
+  ]
+
+  for (let el of topSideBarElements) topSideBar.appendChild(el);
+
+  for (let el of [topSideBar, chatBttn]) sideLeftBar.appendChild(el);
+  
+  const hudElements = [sideLeftBar, helpBttn];
+
+  for (let hudElement of hudElements) playerUI.appendChild(hudElement);
+};
+
 const render = () => {
   const loading = () => {
     const mother = document.createElement("div");
@@ -26,6 +236,7 @@ const render = () => {
   };
 
   const baseUrl = "https://admin-brasilagriland.com.br/services";
+  // const baseUrl = "http://localhost:3090";
   
   const createInput = (id, className, labelText, type) => {
     const input = document.createElement("input");
@@ -116,7 +327,9 @@ const render = () => {
               value: data.data
             };
               
-            emitUIInteraction(emitData);
+            // emitUIInteraction(emitData);
+            serverLogin();
+            renderHud();
           } else if (!data.hasVerified && data.success) {
             let url = new URL("verify.html", window.location.href);
             url.searchParams.set("email", email);
