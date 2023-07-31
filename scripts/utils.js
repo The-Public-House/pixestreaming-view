@@ -4,12 +4,16 @@ export const createInput = (id, className, labelText, type) => {
   
   input.id = id;
   input.type = type;
-   
+
+  input.className = className;
+
   label.for = id;
   
   label.appendChild(document.createTextNode(labelText));
 
   const div = document.createElement("div");
+
+  div.className = 'wrapper-input';
     
   div.appendChild(label);
   div.appendChild(input);
@@ -21,7 +25,9 @@ export const createButton = (className, onClick, buttonText) => {
   const button = document.createElement("button");
   button.appendChild(document.createTextNode(buttonText));
 
-  button.class = className;
+  button.className = className;
+
+  button.id = className;
 
   button.onclick = onClick;
 
@@ -36,7 +42,7 @@ export const createTitle = (text) => {
   return title;
 };
 
-export const baseUrl = "https://agriland11971.c42.integrator.host/services"
+export const baseUrl = "https://admin-brasilagriland.com.br/services";
 
 export const postHttp = async (endPoint, onSuccess, onFailed, onError, data) => {
   var request = new XMLHttpRequest(); 

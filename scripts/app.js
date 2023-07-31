@@ -1,4 +1,22 @@
 const render = () => {
+  const loading = () => {
+    const mother = document.createElement("div");
+    mother.id = "loading";
+    mother.className = "lds-ellipsis";
+
+    const one = document.createElement("div");
+    const two = document.createElement("div");
+    const three = document.createElement("div");
+    const four = document.createElement("div");
+
+    mother.appendChild(one);
+    mother.appendChild(two);
+    mother.appendChild(three);
+    mother.appendChild(four);
+
+    return mother;
+  }
+
   const createDivider = (className) => {
     const div = document.createElement("div");
 
@@ -7,8 +25,8 @@ const render = () => {
     return div;
   };
 
-  const baseUrl = "https://agriland11971.c42.integrator.host/services";
-
+  const baseUrl = "https://admin-brasilagriland.com.br/services";
+  
   const createInput = (id, className, labelText, type) => {
     const input = document.createElement("input");
     const label = document.createElement("label");
@@ -35,6 +53,8 @@ const render = () => {
     button.appendChild(document.createTextNode(buttonText));
   
     button.className = className;
+
+    button.id = className;
   
     button.onclick = onClick;
   
@@ -52,7 +72,9 @@ const render = () => {
 
   const root = document.getElementById('root');
 
-  // const playerUI = document.getElementById('playerUI');
+  const playerUI = document.getElementById('playerUI');
+
+  playerUI.style.visibility = 'hidden';
 
   const title = createTitle("Login");
 
@@ -60,7 +82,20 @@ const render = () => {
 
   const passwordInput = createInput("password", "password-input", "Senha", "password");
 
+  const alert = document.createElement("div");
+  alert.id = "alert";
+
   const onSubmit = async () => {
+    const alertContainer = document.getElementById("alert");
+    alertContainer.innerHTML = "";
+
+    const bttnSubmit = createButton("button-signin", onSubmit, "ENTRAR");
+    const submitContainer = document.getElementById("submit-container")
+    const animationLoading = loading();
+    
+    submitContainer.removeChild(document.getElementById('button-signin'));
+    submitContainer.appendChild(animationLoading);
+    
     try {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
@@ -81,21 +116,41 @@ const render = () => {
               value: data.data
             };
               
-            // emitUIInteraction(emitData);
-            // root.style.display = "none";
-            // playerUI.style.visibility = "visible";
-          } else if (!data.hasVerified) window.location.replace("verify.html");
+            emitUIInteraction(emitData);
+          } else if (!data.hasVerified && data.success) {
+            let url = new URL("verify.html", window.location.href);
+            url.searchParams.set("email", email);
+            console.log(url);
+            window.location.replace(url.href);
+          } else if (!data.success)  {
+            submitContainer.removeChild(animationLoading);
+            submitContainer.appendChild(bttnSubmit);
+
+            alertContainer.innerHTML = `<p>Email ou senha estão incorretos</p>`;
+          }
         } else {
+          console.log("aqui");
+          submitContainer.removeChild(animationLoading);
+          submitContainer.appendChild(bttnSubmit);
+
           console.error('Erro na requisição. Status:', request.status);
         }
       };
   
       request.onerror = function() {
+        console.log("aqui2");
+        submitContainer.removeChild(animationLoading);
+        submitContainer.appendChild(bttnSubmit);
+
         console.error('Erro na requisição.');
       };
   
       request.send(JSON.stringify(data));
     } catch(err) {
+      console.log("aqui3");
+      submitContainer.removeChild(animationLoading);
+      submitContainer.appendChild(bttnSubmit);
+
       console.log(err);
     }
   };
@@ -118,9 +173,15 @@ const render = () => {
   
   card.className = "card-login";
 
+  card.id = "card-login";
+
   const footerCard = document.createElement("div");
 
   footerCard.className = "footer-login";
+
+  const submitContainer = document.createElement("div");
+  submitContainer.id = "submit-container";
+  submitContainer.appendChild(buttonSubmit);
 
   appendChilds(footerCard, [buttonRegister, dividerFooter, buttonForget]);
 
@@ -129,9 +190,10 @@ const render = () => {
     dividerTop,
     emailInput,
     passwordInput,
-    buttonSubmit,
+    submitContainer,
     dividerBottom,    
-    footerCard, 
+    footerCard,
+    alert,
   ]);
 
   root.appendChild(card);

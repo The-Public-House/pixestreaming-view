@@ -4,125 +4,368 @@
     <title>Brasil Agriland</title>
     <link rel="stylesheet" href="./styles.css">
     <link rel="stylesheet" href="./register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     
     <meta charset="UTF-8">
   </head>
   <body>
     <script type="module" src="../scripts/register.js"></script>
-
     <div class="main-content">
-
       
       <div class="card-register">
-        <h1>Registro</h1>
-        
-        <label for="name">Nome completo</label>
-        <input id="name" />
+        <div class="wrappper-inputs">
+
+          <div class="header">
+            <h1>Cadastro</h1>
+    
+            <button
+              id="cancel-button"
+              class="to-cancel-button-top"
+            >
+              Voltar
+            </button>
+          </div>
+  
+          <div class="divider"></div>
+  
+          <div class="line">
+            <div class="wrapper-input">
+              <label for="name">Nome</label>
+              <input id="name" />
+              <div class="message-container" id="message-name"></div>
+            </div>
+    
+            <div class="wrapper-input">
+              <label for="lastName">Sobrenome</label>
+              <input id="lastName" />
+              <div class="message-container" id="message-lastName"></div>
+            </div>
+          </div>
+  
+          <div class="line">
+            <div class="wrapper-input">
+              <label for="phone">Telefone</label>
+              <input maxlength="11" id="phone" oninput="phoneMask(this)"/>
+              <div class="message-container" id="message-phone"></div>
+            </div>
+              
+            <div class="wrapper-input">
+              <label for="email">E-mail</label>
+              <input id="email" type="email" />
+              <div class="message-container" id="message-email"></div>
+            </div>
+          </div>
+  
+          <div class="line">
+            <div class="wrapper-input password-container">
+              <label for="password">Senha(Cadastro)</label>
+              <input type="password" id="password" />
+              <i class="far fa-eye fa-eye-slash" id="togglePassword"></i>
+              <div class="message-container" id="message-password"></div>
+            </div>
           
-        <label for="email">E-mail</label>
-        <input id="email" />
-      
-        <label for="password">Senha</label>
-        <input id="password" />
-      
-        <label for="confirmPassword">Confirme sua senha</label>
-        <input id="confirmPassword" />
-      
-        <label for="phone">Telefone</label>
-        <input id="phone" />
-      
-        <label for="cpf">CPF</label>
-        <input id="cpf" />
-  
-        <label for="corpEmail">E-mail Coorporativo</label>
-        <input id="corpEmail" />
+            <div class="wrapper-input password-container">
+              <label for="confirmPassword">Confirme sua senha</label>
+              <input type="password" id="confirmPassword" />
+              <i class="far fa-eye fa-eye-slash" id="toggleConfirmPassword" style="margin-left: -30px; cursor: pointer;"></i>
+              <div class="message-container" id="message-confirmPassword"></div>
+            </div>
+          </div>
         
-        <div>
-          <label for="partOf">Faz parte do Agro?</label>
-          <input type="checkbox" id="partOf" />
-        </div>
+          <div class="line">
+            <div class="wrapper-input">
+              <label for="cpf">CPF</label>
+              <input maxlength="11" id="cpf" oninput="cpfMask(this)"/>
+              <div class="message-container" id="message-cpf"></div>
+            </div>
   
-        <label for="role">Cargo</label>
-        <input id="role" />
-  
-        <label for="instituition">Instituição</label>
-        <input id="instituition" />
-        
-        <h4 style="font-weight: 400;">Area de interesse</h4>
-  
-        <div class="area-of-interest">
-          <div class="checkbox">
-            <input id="cotton" type="checkbox" />
-            <label for="cotton">Algodão</label>
+            <p class="info-p" id="info-password">Mínimo de 8 caracteres, incluíndo números, maiúsculas e símbolos.</p>
           </div>
   
-          <div class="checkbox">
-            <input id="sugarCane" type="checkbox" />
-            <label for="sugarCane">Cana de açucar</label>
+          <div class="divider"></div>
+  
+          <div class="wrapper-interest">
+            <h4 style="font-weight: 600;">ÁREA DE INTERESSE</h4>
+  
+            <div class="wrapper-interest-actions">
+              <div class="checkbox">
+                <input id="allChecked" type="checkbox" />
+                <label for="allChecked">Todos</label>
+              </div>
+      
+              <div class="checkbox">
+                <input id="allUnChecked" type="checkbox" />
+                <label for="allUnChecked">Nenhuma</label>
+              </div>
+            </div>
           </div>
   
-          <div class="checkbox">
-            <input id="soy" type="checkbox" />
-            <label for="soy">Soja</label>
+          <div class="area-of-interest">
+            <div class="column">
+              <div class="checkbox">
+                <input id="cotton" type="checkbox" />
+                <label for="cotton">Algodão</label>
+              </div>
+              
+              <div class="checkbox">
+                <input id="sugarCane" type="checkbox" />
+                <label for="sugarCane">Cana de açucar</label>
+              </div>
+      
+              <div class="checkbox">
+                <input id="soy" type="checkbox" />
+                <label for="soy">Soja</label>
+              </div>
+    
+              <div class="checkbox">
+                <input id="games" type="checkbox" />
+                <label for="games">Games</label>
+              </div>
+            </div>
+  
+            <div class="column">
+              <div class="checkbox">
+                <input id="birds" type="checkbox" />
+                <label for="birds">Aves</label>
+              </div>
+      
+              <div class="checkbox">
+                <input id="cocoa" type="checkbox" />
+                <label for="cocoa">Cacau</label>
+              </div>
+      
+              <div class="checkbox">
+                <input id="swine" type="checkbox" />
+                <label for="swine">Suínos</label>
+              </div>
+    
+              <div class="checkbox">
+                <input id="consumer" type="checkbox" />
+                <label for="consumer">Consumo</label>
+              </div>
+            </div>
+    
+            <div class="column">
+              <div class="checkbox">
+                <input id="bovine" type="checkbox" />
+                <label for="bovine">Bovina</label>
+              </div>
+      
+              <div class="checkbox">
+                <input id="milk" type="checkbox" />
+                <label for="milk">Leite e Derivados</label>
+              </div>
+    
+              <div class="checkbox">
+                <input id="events" type="checkbox" />
+                <label for="events">Eventos</label>
+              </div>
+    
+              <div class="checkbox">
+                <input id="others" type="checkbox" />
+                <label for="others">Outros</label>
+              </div>
+            </div>
+  
+            <div class="column">
+              <div class="checkbox">
+                <input id="coffee" type="checkbox" />
+                <label for="coffee">Café</label>
+              </div>
+      
+              <div class="checkbox">
+                <input id="fish" type="checkbox" />
+                <label for="fish">Pescado</label>
+              </div>
+    
+              <div class="checkbox">
+                <input id="meets" type="checkbox" />
+                <label for="meets">Reuniões</label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="message-container" id="message-areaOfInterest"></div>
+  
+          <div class="divider"></div>
+  
+          <div class="wrapper-part-of">
+            <div class="checkbox">
+              <input type="checkbox" id="noPartOf" />
+              <label for="noPartOf" style="font-weight: 600;">SOU CONSUMIDOR</label>
+            </div>
+            
+            <div class="checkbox">
+              <input type="checkbox" id="partOf" />
+              <label for="partOf" style="font-weight: 600;">FAÇO PARTE DO AGRO</label>
+            </div>
           </div>
   
-          <div class="checkbox">
-            <input id="birds" type="checkbox" />
-            <label for="birds">Aves</label>
+          <div class="line">
+            <div class="wrapper-input">
+              <label for="corp">Empresa</label>
+              <input disabled type="text" id="corp">
+              <div class="message-container" id="message-corp"></div>
+            </div>
+  
+            <div class="wrapper-input">
+              <label for="corpEmail">E-mail Coorporativo</label>
+              <input disabled id="corpEmail" />
+              <div class="message-container" id="message-corpEmail"></div>
+            </div>
           </div>
   
-          <div class="checkbox">
-            <input id="cocoa" type="checkbox" />
-            <label for="cocoa">Cacau</label>
+          <div class="line">
+            <div class="wrapper-input">
+              <label for="role">Cargo</label>
+
+              <select disabled name="role" id="role">
+                <option value="">Selecione um cargo.</option>
+                <option value="Presidente">Presidente</option>
+                <option value="Vice-presidente">Vice-presidente</option>
+                <option value="Diretor">Diretor</option>
+                <option value="Superintendente">Superintendente</option>
+                <option value="Gerente">Gerente</option>
+                <option value="Supervisor">Supervisor</option>
+                <option value="Analista">Analista</option>
+                <option value="Trainee">Trainee</option>
+                <option value="Estagiário">Estagiário</option>
+                <option value="Outro">Outro</option>
+              </select>
+              <div class="message-container" id="message-role"></div>
+            </div>
+    
+            <div class="wrapper-input">
+              <label for="area">Área de Atuação</label>
+
+              <select disabled name="area" id="area">
+                <option value="">Selecione uma área de atuação.</option>
+                <option value="Equipamentos">Equipamentos</option>
+                <option value="Insumos">Insumos</option>
+                <option value="Produção rural">Produção rural</option>
+                <option value="Indústria">Indústria</option>
+                <option value="Distribuição">Distribuição</option>
+                <option value="Serviços">Serviços</option>
+                <option value="Outro(s)">Outro(s)</option>
+              </select>
+              <div class="message-container" id="message-area"></div>              
+            </div>
           </div>
   
-          <div class="checkbox">
-            <input id="swine" type="checkbox" />
-            <label for="swine">Suíno</label>
+          <div class="wrapper-input">
+            <label for="chain">Cadeia produtiva</label>
+
+            <select disabled name="chain" id="chain">
+              <option value="">Selecione uma cadeia produtiva.</option>
+              <option value="Cadeia Bovina">Cadeia Bovina</option>
+              <option value="Cadeia Suína">Cadeia Suína</option>
+              <option value="Cadeia de Aves">Cadeia de Aves</option>
+              <option value="Cadeia de Pescados">Cadeia de Pescados</option>
+              <option value="Cadeia de Leite e Derivados">Cadeia de Leite e Derivados</option>
+              <option value="Cadeia de Soja">Cadeia de Soja</option>
+              <option value="Cadeia do Algodão">Cadeia do Algodão</option>
+              <option value="Cadeia do Café">Cadeia do Café</option>
+              <option value="Cadeia do Cacau">Cadeia do Cacau</option>
+              <option value="Cadeia Cana de Açúcar">Cadeia Cana de Açúcar</option>
+              <option value="Outro">Outro</option>
+            </select>
+
+            <div class="message-container" id="message-chain"></div>
           </div>
   
-          <div class="checkbox">
-            <input id="bovine" type="checkbox" />
-            <label for="bovine">Bovino</label>
+          <div class="divider"></div>
+  
+          <div class="line">
+            <div class="wrapper-pdf">
+              <img src="./pdf.png" class="pdf-icon" alt="pdf-icon">
+              
+              <a data-modal="modal-one">
+                <strong>
+                  TERMOS DE USO E POLÍTICA DE PRIVACIDADE
+                </strong>
+              </a>
+            </div>
+  
+            <div class="accept-terms">
+              <input disabled type="checkbox" id="acceptTerms" />
+              <label
+                for="acceptTerms"
+              >
+                ACEITO OS TERMOS DE USO E POLÍTICA DE PRIVACIDADE
+              </label>
+              <div class="message-container" id="message-acceptTerms"></div>
+            </div>
           </div>
+    
   
-          <div class="checkbox">
-            <input id="milk" type="checkbox" />
-            <label for="milk">Leite e Derivados</label>
+          <div class="divider"></div>
+  
+          <div class="footer">
+            <button
+              id="register-button"
+              class="register-button"
+              style="display: block;"
+            >
+              Enviar
+            </button>
+            <div
+              id="loading"
+              style="display: none;"
+              class="lds-ellipsis"
+            >
+              <div></div><div></div><div></div><div></div>
+            </div>
+      
+            <button
+              id="cancel-button-footer"
+              class="to-cancel-button-footer"
+            >
+              Já tem conta? <strong>Acessar</strong>
+            </button>
           </div>
-  
-          <div class="checkbox">
-            <input id="coffee" type="checkbox" />
-            <label for="coffee">Café</label>
-          </div>
-  
-          <div class="checkbox">
-            <input id="fish" type="checkbox" />
-            <label for="fish">Pescado</label>
-          </div>
-        </div>
-  
-        <div class="accept-terms">
-          <input type="checkbox" id="acceptTerms" />
-          <label for="acceptTerms">Aceita os termos</label>
-        </div>
-  
-        <button
-          id="register-button"
-        >
-          Registrar
-        </button>
-  
-        <button
-          id="cancel-button"
-        >
-          Cancelar
-        </button>
-  
-        <div id="alert"></div>
+          <div id="alert"></div>
+      </div>
+      </div>
     </div>
 
+    <div class="modal" id="modal-one">
+      <div class="modal-bg modal-exit"></div>
+      <div class="modal-container">
+        <button class="modal-close modal-exit">X</button>
+        <div id="images" class="images">
+          <img src="./terms/T_UserTerms_1.PNG" alt="terms">
+          <img src="./terms/T_UserTerms_2.PNG" alt="terms">
+          <img src="./terms/T_UserTerms_3.PNG" alt="terms">
+          <img src="./terms/T_UserTerms_4.PNG" alt="terms">
+          <img src="./terms/T_UserTerms_5.PNG" alt="terms">
+          <img src="./terms/T_UserTerms_6.PNG" alt="terms">
+          <img src="./terms/T_UserTerms_7.PNG" alt="terms">
+          <img src="./terms/T_UserTerms_8.PNG" alt="terms">
+          <img src="./terms/T_UserTerms_9.PNG" alt="terms">
+          <img src="./terms/T_UserTerms_10.PNG" alt="terms">
+        </div>
+
+        <button disabled id="accept" class="accept">Aceito os termos.</button>
+      </div>
     </div>
+
+    <script>
+      function phoneMask (input) {
+        var numero = input.value.replace(/\D/g, '');
+
+        numero = numero.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+
+        input.value = numero;
+      };
+
+      function cpfMask (input) {
+        var cpf = input.value.replace(/\D/g, '');
+
+        cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+
+        input.value = cpf;
+      };
+    </script>
   </body>
 </html>
 

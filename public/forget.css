@@ -9,13 +9,233 @@ body {
   margin: 0px !important;
   background-image: url("./bg.png");;
   background-size: cover;
+
+  font-family: sans-serif;
 }
 
-.root {
+#root {
   width: 100%;
   height: 100%;
 
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+
+.input-values {
+  padding: 8px;
+  border: 1px solid #dcdc01;
+}
+
+.forget-container h2 {
+  color: #dcdc01;
+}
+
+.forget-container p {
+  color: #6b6b6b;
+}
+
+.forget-container {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: #fff;
+  margin-right: 29%;
+}
+
+.cancel-button {
+  background: transparent;
+  border: 2px solid transparent;
+  font-size: 18px;
+}
+
+.submit-button {
+  background: #dcdc01;
+  border: 2px solid #dcdc01;
+  padding: 7px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 40%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.submit-button:hover {
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  color: #dcdc01;
+  cursor: pointer;
+}
+
+.divider {
+  width: 100%;
+  height: 2px;
+  background: #dcdc01;
+}
+
+.wrapper-input {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  margin-bottom: 8px;
+}
+
+.wrapper-input label {
+  color: #6b6b6b;
+}
+
+.code-and-button {
+  display: flex;
+}
+
+.code-and-button .submit-button {
+  height: 33px;
+  margin: 0px;
+}
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  top: -26px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #dcdc01;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+#alert {
+  color: red;
+  font-weight: bold;
+}
+
+.submit-button:disabled {
+  background: #dcdc015d;
+  border-color: #dcdc015d;
+  color: #00000052;
+}
+
+.submit-button:disabled:hover {
+  cursor: not-allowed;
+}
+
+.container-checked {
+  background: greenyellow;
+  height: 33px;
+  width: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-checked img {
+  height: 80%;
+}
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  top: -26px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #dcdc01;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
 }
