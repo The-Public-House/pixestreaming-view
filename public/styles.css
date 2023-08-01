@@ -199,6 +199,10 @@ body {
   font-weight: bold;
 }
 
+.bttn:hover {
+  cursor: pointer;
+}
+
 .side-left-bar {
   position: absolute;
   right: 10px;
@@ -297,4 +301,43 @@ body {
 
 .input-chat {
   width: 98%;
+}
+
+.close-chat-bttn {
+  position: absolute;
+}
+
+.schedule-container {
+  width: 550px;
+  height: 400px;
+
+  position: absolute;
+  right: 72px;
+  top: 231px;
+  
+  display: flex;
+  flex-direction: column;
+
+  background: #6b6b6b4d;
+
+  overflow-y: scroll;
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.header-display {
+  display: flex;
+  justify-content: space-around;
+}
+
+.header-display p {
+  margin: 0px;
+}
+
+.close-schedule-bttn {
+  width: 25px;
+  position: absolute;
 }

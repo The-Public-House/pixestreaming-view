@@ -8,6 +8,73 @@ const serverLogin = () => {
   playerUI.style.visibility = "visible";
 }
 
+const renderSchedule = data => {
+  const list = data.data;
+  const playerUI = document.getElementById('playerUI');
+  const scheduleContainer = document.createElement('div');
+
+  scheduleContainer.id = 'schedule-container';
+  scheduleContainer.className = 'schedule-container';
+
+  const closeScheduleBttn = document.createElement('button');
+  closeScheduleBttn.id = 'close-schedule-bttn';
+  closeScheduleBttn.className = 'close-schedule-bttn bttn';
+  closeScheduleBttn.appendChild(document.createTextNode('X'));
+  closeScheduleBttn.onclick = () => playerUI.removeChild(scheduleContainer);
+
+  scheduleContainer.appendChild(closeScheduleBttn);
+
+  const header = document.createElement('div');
+  header.id = 'header-display';
+  header.className = 'header-display';
+
+  for (let el of ['Nome', 'Local', 'Inicia', 'Finaliza']) {
+    const pEl = document.createElement('p');
+    pEl.appendChild(document.createTextNode(el));
+    
+    header.appendChild(pEl);
+  }
+
+  scheduleContainer.appendChild(header);
+
+  for (let el of list) {
+    const eventName = document.createElement('p');
+    eventName.id = 'event-display';
+    eventName.ClassName = 'event-display';
+    eventName.appendChild(document.createTextNode(el.eventName));
+
+    const place = document.createElement('p');
+    place.id = 'event-display';
+    place.ClassName = 'event-display';
+    place.appendChild(document.createTextNode(el.placeName));    
+
+    const startAt = document.createElement('p');
+    startAt.id = 'event-display';
+    startAt.className = 'event-display';
+    const startAtContent = `${el.startAt.year}/${el.startAt.month}/${el.startAt.day} ${el.startAt.hour}:${el.startAt.minute}`;
+    startAt.appendChild(document.createTextNode(startAtContent));
+
+    const endAt = document.createElement('p');
+    endAt.id = 'event-display';
+    endAt.ClassName = 'event-display';
+    const endAtContent = `${el.endAt.year}/${el.endAt.month}/${el.endAt.day} ${el.endAt.hour}:${el.endAt.minute}`;
+    endAt.appendChild(document.createTextNode(endAtContent));
+
+    const row = document.createElement('div');
+    row.id = 'row';
+    row.className = 'row';
+
+    row.appendChild(eventName);
+    row.appendChild(place);
+    row.appendChild(startAt);
+    row.appendChild(endAt);
+
+    scheduleContainer.appendChild(row);
+  }
+  
+  playerUI.appendChild(scheduleContainer);
+}
+
 const renderChat = () => {
   const playerUI = document.getElementById('playerUI');
   const chatBttn = document.getElementById('chat-bttn');
@@ -19,11 +86,22 @@ const renderChat = () => {
   const inputChat = document.createElement('input');
   inputChat.id = 'input-chat';
   inputChat.className = 'input-chat';
+  
+  const closeChat = document.createElement('button');
+  closeChat.id = 'close-chat-bttn';
+  closeChat.className = 'close-chat-bttn bttn';
+  closeChat.appendChild(document.createTextNode('X'));
 
   const chatContainer = document.createElement('div');
   chatContainer.id = 'container-chat';
   chatContainer.className = 'container-chat';
 
+  closeChat.onclick = () => {
+    chatBttn.style.visibility = 'visible';
+    playerUI.removeChild(chatContainer);
+  };
+
+  chatContainer.appendChild(closeChat);
   chatContainer.appendChild(displayChat);
   chatContainer.appendChild(inputChat);
 
@@ -77,14 +155,6 @@ const renderHud = () => {
     }
   }
 
-  const scheduleHud = list => {
-    const schedule = document.createElement('div');
-
-    for (let event of list) schedule.appendChild(document.createTextNode(`${event.eventName} - ${event.placeName}`));
-
-    return schedule;
-  }
-
   const createButton = (id, className, onClick, content) => {
     const button = document.createElement('button');
 
@@ -96,40 +166,18 @@ const renderHud = () => {
     return button;
   };
 
-  const scheduleOnClick = () => {
-    getRequestBase("?futures=true&dateType=obj", data => {
-      const elementList = scheduleHud(data.data);
-
-      playerUI.appendChild(elementList);
-    })
-  }
-
-  // openMap
-  // closeMap
-  // name: sendText value: { type: 'private' || 'open', message: string }
-  // receiveText
-  // Marco Antônio — 07/20/2023 9:45 AM
-  // name: closeRPM
-  // Descrição: fecha a interface do ReadyPlayerMe
-  // ---
-  // name: importAvatarURL {URL: string}
-  // Descrição: quando é importado o Avatar do ReadyPlayerMe
-  // ---
-  // name: quitAgriland
-  // Descrição: quando o jogador confirma que quer fechar a aplicação
-
   const emit = name => emitUIInteraction({ name });
 
   const scheduleBttn = createButton(
     'schedule-bttn',
-    'schedule-bttn',
-    scheduleOnClick,
+    'schedule-bttn bttn',
+    () => getRequestBase("?futures=true&dateType=obj", renderSchedule),
     'Abrir agenda'
   );
 
   const helpBttn = createButton(
     'help-bttn',
-    'help-bttn',
+    'help-bttn bttn',
     () => {
       emit('help');
     },
@@ -138,14 +186,14 @@ const renderHud = () => {
 
   const avatarBttn = createButton(
     'avatar-bttn',
-    'avatar-bttn',
+    'avatar-bttn bttn',
     () => console.log('avatar'),
     'Avatar'
   );
 
   const mapBttn = createButton(
     'map-bttn',
-    'map-bttn',
+    'map-bttn bttn',
     () => {
       emit('openMap');
     },
@@ -154,21 +202,21 @@ const renderHud = () => {
 
   const controlsBttn = createButton(
     'controls-bttn',
-    'controls-bttn',
+    'controls-bttn bttn',
     () => console.log('controls'),
     'Controls'
   );
 
   const soundBttn = createButton(
     'sound-bttn',
-    'sound-bttn',
+    'sound-bttn bttn',
     () => console.log('sound'),
     'Sound'
   );
 
   const logoutBttn = createButton(
     'logout-bttn',
-    'logout-bttn',
+    'logout-bttn bttn',
     () => {
       emit('quitAgriland');
     },
@@ -177,7 +225,7 @@ const renderHud = () => {
 
   const chatBttn = createButton(
     'chat-bttn',
-    'chat-bttn',
+    'chat-bttn bttn',
     () => {
       renderChat();
     },
