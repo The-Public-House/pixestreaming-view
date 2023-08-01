@@ -172,7 +172,7 @@ const renderHud = () => {
     'schedule-bttn',
     'schedule-bttn bttn',
     () => getRequestBase("?futures=true&dateType=obj", renderSchedule),
-    'Abrir agenda'
+    ''
   );
 
   const helpBttn = createButton(
@@ -181,7 +181,7 @@ const renderHud = () => {
     () => {
       emit('help');
     },
-    'Help'
+    ''
   );
 
   const avatarBttn = createButton(
@@ -197,21 +197,21 @@ const renderHud = () => {
     () => {
       emit('openMap');
     },
-    'Mapa'
+    ''
   );
 
   const controlsBttn = createButton(
     'controls-bttn',
     'controls-bttn bttn',
     () => console.log('controls'),
-    'Controls'
+    ''
   );
 
   const soundBttn = createButton(
     'sound-bttn',
     'sound-bttn bttn',
     () => console.log('sound'),
-    'Sound'
+    ''
   );
 
   const logoutBttn = createButton(
@@ -220,7 +220,7 @@ const renderHud = () => {
     () => {
       emit('quitAgriland');
     },
-    'Logout'
+    ''
   );
 
   const chatBttn = createButton(
@@ -229,7 +229,7 @@ const renderHud = () => {
     () => {
       renderChat();
     },
-    'chat'
+    ''
   );
 
   const sideLeftBar = document.createElement('div');
