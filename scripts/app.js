@@ -187,7 +187,25 @@ const renderHud = () => {
   const avatarBttn = createButton(
     'avatar-bttn',
     'avatar-bttn bttn',
-    () => console.log('avatar'),
+    () => {
+      const iframeContainer = document.createElement('div');
+      const iframe = document.createElement('iframe');
+
+      iframe.src = 'https://readyplayer.me/avatar?frameApi&bodyType=fullbody';
+      iframe.style.width = '1500px';
+      iframe.style.height = '900px';
+      iframe.id = 'rpm-iframe';
+      iframe.className ='rpm-iframe';
+
+      const closeIframe = document.createElement('button');
+      closeIframe.appendChild(document.createTextNode('X'));
+      closeIframe.onclick = () => playerUI.removeChild(iframeContainer);
+
+      iframeContainer.appendChild(closeIframe);
+      iframeContainer.appendChild(iframe)
+
+      playerUI.appendChild(iframeContainer);
+    },
     'Avatar'
   );
 
