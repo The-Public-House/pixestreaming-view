@@ -243,6 +243,12 @@ body {
 .avatar-bttn {
   width: 100px;
   height: 100px;
+
+  border: 3px solid #dcdc01;
+
+  background-size: 150% 140%;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .map-bttn {
@@ -319,13 +325,15 @@ body {
 
 .container-chat {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: 20px;
+  right: 20px;
 
-  width: 400px;
+  width: 600px; 
   height: 300px;
 
-  background: #6b6b6b4d;
+  background: #ffffffd9;
+
+  border: 2px solid #dcdc01;
 }
 
 .display-chat {
@@ -334,26 +342,89 @@ body {
   gap: 5px;
 
   width: 100%;
-  height: 93%;
+  height: 70%;
 
-  overflow-y: scroll;
+  margin-top: 40px;
+
+  overflow-y: auto;
 }
 
-.display-chat p {
+.display-chat::-webkit-scrollbar {
+  width: 8px;
+}
+
+.display-chat::-webkit-scrollbar-thumb {
+  background-color: #dcdc01 ;
+}
+
+.display-chat::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.message-container {
   margin: 0px;
-  background: green;
-  color: white;
-  padding: 2.5px;
-  padding-left: 5px;
-  padding-right: 5px;
+  margin-left: 10px;
+
+  display: flex;
+}
+
+.message-container p {
+  margin: 0px;
+}
+
+.user-message {
+  color: blue;
+  font-weight: bold;
+}
+
+.chat-name {
+  margin: 0px;
+
+  display: flex;
+  justify-content: center;
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  border: 1.5px solid #dcdc01;
+
+  background: white;
+
+  width: 97%;
+
+  position: absolute;
+  left: 1.5%;
+  top: 2.5%;
+
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 13px;
 }
 
 .input-chat {
-  width: 98%;
+  width: 90%;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  height: 26px;
+  background: white;
+  border: 1.5px solid #dcdc01;
 }
 
 .close-chat-bttn {
   position: absolute;
+  bottom: -12px;
+  right: -12px;
+  
+  width: 50px;
+  height: 50px;
+  
+  background-image: url('./icons/T_ChatIcon_On.PNG');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  
+  border: 2px solid transparent;
 }
 
 .schedule-container {
@@ -389,4 +460,188 @@ body {
 .close-schedule-bttn {
   width: 25px;
   position: absolute;
+}
+
+.close-frame-bttn {
+  position: absolute;
+}
+
+.rpm-iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.iframe-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tutorial-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10%;
+
+  align-items: center;
+  margin-top: 10px;
+}
+
+.tutorial-container {
+  width: 70%;
+  height: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tutorial-player {
+  width: 100%;
+  height: 95%;
+
+  background: white;
+
+  border: 1.5px solid #dcdc01;
+}
+
+.player {
+  position: absolute;
+  top: 2.5%;
+  left: 1.5%;
+  
+  width: 97%;
+
+  border: 1.5px solid #dcdc01;
+}
+
+.play-bttn {
+  width: 50px;
+  height: 50px;
+
+  background-image: url('./icons/T_Play.PNG');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  border: 2px solid #dcdc01;
+
+  position: absolute;
+  bottom: 81px; 
+  left: 50%;
+  transform: translateX(-50%)
+}
+
+.progress-video {
+  width: 96.8%;
+  height: 8px;
+
+  display: flex;
+  align-items: center;
+
+  background: #dcdc01;
+
+  position: absolute;
+  bottom: 148px;
+  left: 50%;
+  transform: translateX(-50%)
+}
+
+.video-timer {
+  position: absolute;
+  bottom: 33px;
+  left: 50%;
+  transform: translateX(-50%)
+}
+
+.close-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.close-bttn-video {
+  width: 40px;
+  height: 40px;
+
+  background-image: url('./icons/T_Close.PNG');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  border: 2px solid #dcdc01;
+}
+
+.minimize-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.minimize-bttn {
+  width: 40px;
+  height: 40px;
+
+  background-image: url('./icons/T_Minimize.PNG');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  border: 2px solid #dcdc01;
+}
+
+.minimize-label {
+  margin-bottom: 0px;
+  
+  color: white;
+  text-shadow: 1px 1px 0 black;
+  
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.close-label {
+  margin-bottom: 0px;
+  
+  color: white;
+  text-shadow: 1px 1px 0 black;
+  
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.maximize-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.maximize-bttn {
+  width: 40px;
+  height: 40px;
+
+  background-image: url('./icons/T_Maximize.PNG');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  border: 2px solid #dcdc01;
+}
+
+.maximize-label {
+  margin-bottom: 0px;
+  
+  color: white;
+  text-shadow: 1px 1px 0 black;
+  
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.mark-progress {
+  width: 10px;
+  height: 20px;
+  border-radius: 3px;
+
+  background: #6b6b6b;
 }
